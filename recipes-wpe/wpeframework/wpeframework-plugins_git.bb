@@ -19,6 +19,7 @@ SRCREV = "886f9025b30a75eb19ed589066e09927b92463ec"
 # More complicated plugins are moved seperate includes
 
 include include/compositor.inc
+include include/firmwarecontrol.inc
 include include/ocdm.inc
 include include/power.inc
 include include/remotecontrol.inc
@@ -48,7 +49,7 @@ PACKAGECONFIG ?= " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'widevine',             'opencdmi_wv', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'thunder',              'network', '', d)} \
     ${@bb.utils.contains('MACHINE_FEATURES', 'wifi',                'network wifi', '', d)} \
-    deviceinfo dictionary locationsync monitor remote remote-devinput spark timesync tracing ux virtualinput webkitbrowser webserver youtube \
+    deviceinfo dictionary firmwarecontrol locationsync monitor remote remote-devinput spark timesync tracing ux virtualinput webkitbrowser webserver youtube \
 "
 
 PACKAGECONFIG[bluetooth]      = "-DPLUGIN_BLUETOOTH=ON -DPLUGIN_BLUETOOTH_AUTOSTART=false,-DPLUGIN_BLUETOOTH=OFF,,dbus-glib bluez5"
