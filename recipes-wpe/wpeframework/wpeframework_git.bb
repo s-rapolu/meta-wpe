@@ -2,7 +2,7 @@ SUMMARY = "Web Platform for Embedded Framework"
 HOMEPAGE = "https://github.com/WebPlatformForEmbedded"
 SECTION = "wpe"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=1fe8768cbb5fd322f7d50656133549de"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 PR = "r0"
 
 require include/wpeframework.inc
@@ -14,12 +14,12 @@ DEPENDS_append_libc-musl = " libexecinfo"
 
 PV = "3.0+git${SRCPV}"
 
-SRC_URI = "git://github.com/WebPlatformForEmbedded/WPEFramework.git \
+SRC_URI = "git://github.com/s-rapolu/WPEFramework.git;protocol=git;branch=srapolu/dropbear \
            file://wpeframework-init \
            file://wpeframework.service.in \
            file://0001-Thread.cpp-Include-limits.h-for-PTHREAD_STACK_MIN-de.patch \
            "
-SRCREV = "e770ecf4ba1f7e9293c5c0eac7fe4b660025c389"
+SRCREV = "e8e37426627e751277d73e71c250fee87b6d4aea"
 
 inherit cmake pkgconfig systemd update-rc.d
 

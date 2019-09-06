@@ -1,18 +1,20 @@
 SUMMARY = "WPE Framework common plugins"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=e338ae07876cc28375de01750cc8a162"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=e3fc50a88d0a364313df4b21ef20c29e"
 PR = "r1"
+
+DEPENDS = " dropbear"
 
 require include/wpeframework-plugins.inc
 
-SRC_URI = "git://github.com/WebPlatformForEmbedded/WPEFrameworkPlugins.git;protocol=git;branch=master \
+SRC_URI = "git://github.com/s-rapolu/WPEFrameworkPlugins.git;protocol=git;branch=srapolu/dropbear \
            file://0001-WebKitBrowser-Add-Time-to-dependencies.patch \
            file://index.html \
            file://osmc-devinput-remote.json \
            file://0001-WebKitBrowser-Default-to-1080p-instead-of-720p.patch \
            "
 
-SRCREV = "f5cc1a0218e6fe64eb6a2f99b42f5ee2dd635675"
+SRCREV = "66543b5a3b8a9a6477e9eeff48b25d9034264413"
 
 # ----------------------------------------------------------------------------
 
@@ -47,12 +49,13 @@ PACKAGECONFIG ?= " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'widevine',             'opencdmi_wv', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wpeframework',         'network', '', d)} \
     ${@bb.utils.contains('MACHINE_FEATURES', 'wifi',                'network wifi', '', d)} \
-    compositor deviceinfo dictionary locationsync monitor remote remote-devinput timesync tracing ux virtualinput webkitbrowser webserver youtube \
+    compositor deviceinfo dropbearserver dictionary locationsync monitor remote remote-devinput timesync tracing ux virtualinput webkitbrowser webserver youtube \
 "
 
 PACKAGECONFIG[bluetooth]      = "-DPLUGIN_BLUETOOTH=ON -DPLUGIN_BLUETOOTH_AUTOSTART=false,-DPLUGIN_BLUETOOTH=OFF,,dbus-glib bluez5"
 PACKAGECONFIG[deviceinfo]     = "-DPLUGIN_DEVICEINFO=ON,-DPLUGIN_DEVICEINFO=OFF,"
 PACKAGECONFIG[dictionary]     = "-DPLUGIN_DICTIONARY=ON,-DPLUGIN_DICTIONARY=OFF,"
+PACKAGECONFIG[dropbearserver] = "-DPLUGIN_DROPBEARSERVER=ON, -DPLUGIN_DROPBEARSERVER=OFF,"
 PACKAGECONFIG[dsgcc_client]   = "-DPLUGIN_DSGCCCLIENT=ON,,broadcom-refsw"
 PACKAGECONFIG[locationsync]   = "-DPLUGIN_LOCATIONSYNC=ON \
                                  -DPLUGIN_LOCATIONSYNC_URI=${WPEFRAMEWORK_LOCATIONSYNC_URI} \
