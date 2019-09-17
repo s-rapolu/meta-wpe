@@ -3,8 +3,6 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e3fc50a88d0a364313df4b21ef20c29e"
 PR = "r1"
 
-DEPENDS = " dropbear"
-
 require include/wpeframework-plugins.inc
 
 SRC_URI = "git://github.com/s-rapolu/WPEFrameworkPlugins.git;protocol=git;branch=srapolu/dropbear \
@@ -14,7 +12,7 @@ SRC_URI = "git://github.com/s-rapolu/WPEFrameworkPlugins.git;protocol=git;branch
            file://0001-WebKitBrowser-Default-to-1080p-instead-of-720p.patch \
            "
 
-SRCREV = "66543b5a3b8a9a6477e9eeff48b25d9034264413"
+SRCREV = "176532ce0f01caf4b3f9181b02a073cca26a7c25"
 
 # ----------------------------------------------------------------------------
 
@@ -49,13 +47,13 @@ PACKAGECONFIG ?= " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'widevine',             'opencdmi_wv', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wpeframework',         'network', '', d)} \
     ${@bb.utils.contains('MACHINE_FEATURES', 'wifi',                'network wifi', '', d)} \
-    compositor deviceinfo dropbearserver dictionary locationsync monitor remote remote-devinput timesync tracing ux virtualinput webkitbrowser webserver youtube \
+    ${@bb.utils.contains('DROPBEAR_OPTION', 'dropbear_lib',         'secureshellserver', '', d)}  \
+    compositor deviceinfo dictionary locationsync monitor remote remote-devinput timesync tracing ux virtualinput webkitbrowser webserver youtube \
 "
 
 PACKAGECONFIG[bluetooth]      = "-DPLUGIN_BLUETOOTH=ON -DPLUGIN_BLUETOOTH_AUTOSTART=false,-DPLUGIN_BLUETOOTH=OFF,,dbus-glib bluez5"
 PACKAGECONFIG[deviceinfo]     = "-DPLUGIN_DEVICEINFO=ON,-DPLUGIN_DEVICEINFO=OFF,"
 PACKAGECONFIG[dictionary]     = "-DPLUGIN_DICTIONARY=ON,-DPLUGIN_DICTIONARY=OFF,"
-PACKAGECONFIG[dropbearserver] = "-DPLUGIN_DROPBEARSERVER=ON, -DPLUGIN_DROPBEARSERVER=OFF,"
 PACKAGECONFIG[dsgcc_client]   = "-DPLUGIN_DSGCCCLIENT=ON,,broadcom-refsw"
 PACKAGECONFIG[locationsync]   = "-DPLUGIN_LOCATIONSYNC=ON \
                                  -DPLUGIN_LOCATIONSYNC_URI=${WPEFRAMEWORK_LOCATIONSYNC_URI} \
@@ -66,6 +64,9 @@ PACKAGECONFIG[monitor]        = "-DPLUGIN_MONITOR=ON \
                                  -DPLUGIN_YOUTUBE_MEMORYLIMIT=614400 \
                                  -DPLUGIN_NETFLIX_MEMORYLIMIT=307200 \
                                 ,-DPLUGIN_MONITOR=OFF,"
+PACKAGECONFIG[secureshellserver] = "-DPLUGIN_SECURESHELLSERVER=ON \
+                                        -DPLUGIN_SECURESHELLSERVER_IMPLEMENTATION=Dropbear \
+                                        ,-DPLUGIN_SECURESHELLSERVER=OFF,dropbear,dropbear,"
 PACKAGECONFIG[systemdconnector] = "-DPLUGIN_SYSTEMDCONNECTOR=ON,-DPLUGIN_SYSTEMDCONNECTOR=OFF,"
 PACKAGECONFIG[ioconnector]    = "-DPLUGIN_IOCONNECTOR=ON,-DPLUGIN_IOCONNECTOR=OFF,"
 PACKAGECONFIG[timesync]       = "-DPLUGIN_TIMESYNC=ON,-DPLUGIN_TIMESYNC=OFF,"
