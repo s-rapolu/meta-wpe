@@ -14,12 +14,12 @@ DEPENDS_append_libc-musl = " libexecinfo"
 
 PV = "3.0+git${SRCPV}"
 
-SRC_URI = "git://github.com/s-rapolu/WPEFramework.git;protocol=git;branch=srapolu/dropbear \
+SRC_URI = "git://github.com/s-rapolu/WPEFramework.git;protocol=git;branch=srapolu/secureshell \
            file://wpeframework-init \
            file://wpeframework.service.in \
            file://0001-Thread.cpp-Include-limits.h-for-PTHREAD_STACK_MIN-de.patch \
            "
-SRCREV = "2c1a62d177473c67c1abbd41147a051edb436433"
+SRCREV = "3bda629461473eac3c93a11f385433d079a7b2ff"
 
 inherit cmake pkgconfig systemd update-rc.d
 

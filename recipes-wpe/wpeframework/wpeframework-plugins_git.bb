@@ -5,14 +5,14 @@ PR = "r1"
 
 require include/wpeframework-plugins.inc
 
-SRC_URI = "git://github.com/s-rapolu/WPEFrameworkPlugins.git;protocol=git;branch=srapolu/dropbear \
+SRC_URI = "git://github.com/s-rapolu/WPEFrameworkPlugins.git;protocol=git;branch=srapolu/secureshell \
            file://0001-WebKitBrowser-Add-Time-to-dependencies.patch \
            file://index.html \
            file://osmc-devinput-remote.json \
            file://0001-WebKitBrowser-Default-to-1080p-instead-of-720p.patch \
            "
 
-SRCREV = "176532ce0f01caf4b3f9181b02a073cca26a7c25"
+SRCREV = "bc2ef1c87c1c2ab33de17ffe2b9ab0399bc4163a"
 
 # ----------------------------------------------------------------------------
 
@@ -110,5 +110,5 @@ FILES_SOLIBSDEV = ""
 
 FILES_${PN} += "${libdir}/wpeframework/plugins/*.so ${libdir}/*.so ${datadir}/WPEFramework/* /var/www/index.html"
 
-INSANE_SKIP_${PN} += "libdir staticdev dev-so"
+INSANE_SKIP_${PN} += "libdir staticdev dev-so file-rdeps"
 INSANE_SKIP_${PN}-dbg += "libdir"
